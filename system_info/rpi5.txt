@@ -1,0 +1,143 @@
+Supported features:
+multicanvasformats	true
+clampzero	true
+lighten	true
+fullnpot	true
+pixelshaderhighp	true
+shaderderivatives	true
+glsl3	false
+instancing	true
+
+Supported canvas formats:
+r8	true
+rg16f	true
+rgba16f	true
+rg8	true
+rg32f	true
+rgba8	true
+rgba32f	true
+r16	false
+rgba4	true
+normal	true
+hdr	true
+srgba8	true
+la8	false
+r16f	true
+depth16	true
+depth24	true
+rgb10a2	true
+depth24stencil8	true
+rg11b10f	true
+depth32fstencil8	true
+depth32f	true
+stencil8	true
+rgb565	true
+rgb5a1	true
+r32f	true
+rgba16	false
+rg16	false
+
+Supported image formats:
+ETC2rgb	true
+ETC2rgba	true
+ETC2rgba1	true
+EACr	true
+EACrs	true
+EACrg	true
+EACrgs	true
+ASTC4x4	true
+ASTC5x4	true
+ASTC5x5	true
+ASTC6x5	true
+ASTC6x6	true
+ASTC8x5	true
+ASTC8x6	true
+ASTC8x8	true
+ASTC10x5	true
+ASTC10x6	true
+ASTC10x8	true
+ASTC10x10	true
+ASTC12x10	true
+ASTC12x12	true
+r8	true
+rg16f	true
+rgba16f	true
+rg8	true
+rg32f	true
+rgba8	true
+rgba32f	true
+r16	true
+rgba4	true
+rg16	true
+rgba16	true
+r16f	true
+r32f	true
+rgb5a1	true
+rgb10a2	true
+rgb565	true
+rg11b10f	true
+DXT1	true
+DXT3	true
+DXT5	true
+BC4	true
+BC4s	true
+BC5	true
+BC5s	true
+BC6h	false
+BC6hs	false
+BC7	false
+PVR1rgb2	false
+PVR1rgb4	false
+PVR1rgba2	false
+PVR1rgba4	false
+ETC1	true
+
+Renderer:	OpenGL
+Vendor:	Broadcom
+Version:	3.1 Mesa 23.2.1-1~bpo12+rpt3
+Device:	V3D 7.1
+
+Supported texture types:
+cube	true
+2d	true
+volume	true
+array	true
+
+System limits:
+cubetexturesize	4096
+texturelayers	2048
+multicanvas	8
+canvasmsaa	4
+anisotropy	16
+pointsize	512
+texturesize	4096
+volumetexturesize	4096
+
+Window dimensions:
+Width:	800
+Height:	600
+
+Supported fullscreen modes:
+1: 1920x1080
+2: 1680x1050
+3: 1440x1080
+4: 1400x1050
+5: 1600x900
+6: 1280x1024
+7: 1440x900
+8: 1280x960
+9: 1368x768
+10: 1280x800
+11: 1152x864
+12: 1280x720
+13: 1024x768
+14: 1024x576
+15: 800x600
+16: 864x486
+17: 720x480
+18: 640x480
+19: 720x400
+20: 640x400
+21: 640x350
+22: 320x240
+23: 320x200
