@@ -166,9 +166,21 @@ end
 
 function love.load()
 	love.window.setVSync(1)
-		
-	table.insert(players, loadChar("Wolverine", 20, 20))
-	table.insert(players, loadChar("Wolverine", 200, 200))
+	
+	table.insert(players, loadChar("Zangief", 0, 20))	
+	table.insert(players, loadChar("Zangief", 200, 20))
+	table.insert(players, loadChar("Zangief", 400, 20))
+	table.insert(players, loadChar("Zangief", 600, 20))
+	
+	table.insert(players, loadChar("Zangief", 0, 200))
+	table.insert(players, loadChar("Zangief", 200, 200))
+	table.insert(players, loadChar("Zangief", 400, 200))
+	table.insert(players, loadChar("Zangief", 600, 200))
+	
+	table.insert(players, loadChar("Zangief", 0, 400))
+	table.insert(players, loadChar("Zangief", 200, 400))
+	table.insert(players, loadChar("Zangief", 400, 400))
+	table.insert(players, loadChar("Zangief", 600, 400))
 end
 
 
@@ -189,7 +201,7 @@ function love.update(dt)
 					if player.tick > anim.ticks then
 						player.frame_no = player.frame_no + 1
 						if player.anims[player.state] ~= nil and player.frame_no > #player.anims[player.state] then
-							player.state = ryu_actions[math.random(1, 15)]()
+							player.state = zangief_actions[math.random(1, 15)]()
 							player.frame_no = 1
 						end
 						player.tick = 0
