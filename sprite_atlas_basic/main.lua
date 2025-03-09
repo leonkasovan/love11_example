@@ -61,6 +61,24 @@ ryu_actions = {
 	[15] = function() return 210 end
 }
 
+wolverine_actions = {
+	[1] = function() return 0 end,
+	[2] = function() return 5 end,
+	[3] = function() return 20 end,
+	[4] = function() return 21 end,
+	[5] = function() return 425 end,
+	[6] = function() return 41 end,
+	[7] = function() return 245 end,
+	[8] = function() return 410 end,
+	[9] = function() return 215 end,
+	[10] = function() return 106 end,
+	[11] = function() return 3500 end,
+	[12] = function() return 181 end,
+	[13] = function() return 192 end,
+	[14] = function() return 195 end,
+	[15] = function() return 210 end
+}
+
 function trim(s)
 	return s:match("^%s*(.-)%s*$")
 end
