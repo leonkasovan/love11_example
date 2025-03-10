@@ -1,3 +1,12 @@
+--[[
+Love2D lua script for loading animation from mugen file *.air (animation definition).
+It will load atlas image in PNG format with file *.tsv for atlas data.
+The image and atlas data is generated using sprpack.exe -t -f output.png input_directory/ (https://gitlab.com/bztsrc/spratlas)
+File atlas data has to be edited in last coloumn "Filename_GroupID_ImageNoID" => "GroupID_ImageNoID"
+
+Dhani Novan, 10:21 10 March 2025
+Jakarta
+]]--
 local max_player = 2
 local players = {}
 local spriteBatch
@@ -6,77 +15,24 @@ local frame_no = 0
 local atlas_img_w, atlas_img_h
 local tick = 0
 local action_id = 0
+local loaded_atlas_img = {}
 
-zangief_actions = {
-	[1] = function() return 0 end,
-	[2] = function() return 1234 end,
-	[3] = function() return 688 end,
-	[4] = function() return 788 end,
-	[5] = function() return 888 end,
-	[6] = function() return 95 end,
-	[7] = function() return 10 end,
-	[8] = function() return 196 end,
-	[9] = function() return 199 end,
-	[10] = function() return 198 end,
-	[11] = function() return 42 end,
-	[12] = function() return 41 end,
-	[13] = function() return 96 end,
-	[14] = function() return 20 end,
-	[15] = function() return 21 end
-}
-
-ken_actions = {
+reserved_action = {
 	[1] = function() return 0 end,
 	[2] = function() return 5 end,
-	[3] = function() return 20 end,
-	[4] = function() return 21 end,
-	[5] = function() return 22 end,
-	[6] = function() return 40 end,
-	[7] = function() return 45 end,
-	[8] = function() return 46 end,
-	[9] = function() return 56 end,
-	[10] = function() return 106 end,
-	[11] = function() return 160 end,
-	[12] = function() return 181 end,
-	[13] = function() return 192 end,
-	[14] = function() return 195 end,
-	[15] = function() return 210 end
-}
-
-ryu_actions = {
-	[1] = function() return 0 end,
-	[2] = function() return 5 end,
-	[3] = function() return 20 end,
-	[4] = function() return 21 end,
-	[5] = function() return 22 end,
-	[6] = function() return 40 end,
-	[7] = function() return 45 end,
-	[8] = function() return 46 end,
-	[9] = function() return 56 end,
-	[10] = function() return 106 end,
-	[11] = function() return 160 end,
-	[12] = function() return 181 end,
-	[13] = function() return 192 end,
-	[14] = function() return 195 end,
-	[15] = function() return 210 end
-}
-
-wolverine_actions = {
-	[1] = function() return 0 end,
-	[2] = function() return 5 end,
-	[3] = function() return 20 end,
-	[4] = function() return 21 end,
-	[5] = function() return 425 end,
-	[6] = function() return 41 end,
-	[7] = function() return 245 end,
-	[8] = function() return 410 end,
-	[9] = function() return 215 end,
-	[10] = function() return 106 end,
-	[11] = function() return 3500 end,
-	[12] = function() return 181 end,
-	[13] = function() return 192 end,
-	[14] = function() return 195 end,
-	[15] = function() return 210 end
+	[3] = function() return 6 end,
+	[4] = function() return 10 end,
+	[5] = function() return 11 end,
+	[6] = function() return 12 end,
+	[7] = function() return 20 end,
+	[8] = function() return 21 end,
+	[9] = function() return 100 end,
+	[10] = function() return 105 end,
+	[11] = function() return 130 end,
+	[12] = function() return 150 end,
+	[13] = function() return 5000 end,
+	[14] = function() return 5005 end,
+	[15] = function() return 5040 end
 }
 
 function trim(s)
@@ -91,10 +47,31 @@ function split(inputstr)
 	return t
 end
 
+-- Check cache for loading atlas image
+-- Memory Usage:
+-- No cache (always call love.graphics.newImage): 800MB
+-- Cache (call loadAtlasImage): 220MB and faster loading time
+function loadAtlasImage(filename)
+	for k,v in ipairs(loaded_atlas_img) do
+		-- if found then use it
+		if v.filename == filename then
+			return v.image
+		end
+	end
+	
+	-- not found, then load it from disk
+	i = {}
+	i.filename = filename
+	i.image = love.graphics.newImage(filename)
+	table.insert(loaded_atlas_img, i)
+	return i.image
+end
+
 function loadChar(name, x, y)
 	player = {}
 	player.name = name
-	player.atlas_img = love.graphics.newImage(player.name .. ".png")
+	-- player.atlas_img = love.graphics.newImage(player.name .. ".png")
+	player.atlas_img = loadAtlasImage(player.name .. ".png")
 	player.atlas_dat = {}
 	for line in io.lines(player.name .. ".tsv") do -- Iterate through each line of player.tsv (tab separated values)
 		if #line > 0 then
@@ -190,15 +167,15 @@ function love.load()
 	table.insert(players, loadChar("Zangief", 400, 20))
 	table.insert(players, loadChar("Zangief", 600, 20))
 
-	table.insert(players, loadChar("Zangief", 0, 200))
-	table.insert(players, loadChar("Zangief", 200, 200))
-	table.insert(players, loadChar("Zangief", 400, 200))
-	table.insert(players, loadChar("Zangief", 600, 200))
+	table.insert(players, loadChar("Wolverine", 0, 200))
+	table.insert(players, loadChar("Wolverine", 200, 200))
+	table.insert(players, loadChar("Wolverine", 400, 200))
+	table.insert(players, loadChar("Wolverine", 600, 200))
 
-	table.insert(players, loadChar("Zangief", 0, 400))
-	table.insert(players, loadChar("Zangief", 200, 400))
-	table.insert(players, loadChar("Zangief", 400, 400))
-	table.insert(players, loadChar("Zangief", 600, 400))
+	table.insert(players, loadChar("Sonic", 0, 400))
+	table.insert(players, loadChar("Sonic", 200, 400))
+	table.insert(players, loadChar("Sonic", 400, 400))
+	table.insert(players, loadChar("Sonic", 600, 400))
 end
 
 function love.update(dt)
@@ -218,7 +195,7 @@ function love.update(dt)
 					if player.tick > anim.ticks then
 						player.frame_no = player.frame_no + 1
 						if player.anims[player.state] ~= nil and player.frame_no > #player.anims[player.state] then
-							player.state = zangief_actions[math.random(1, 15)]()
+							player.state = reserved_action[math.random(1, 15)]()
 							player.frame_no = 1
 						end
 						player.tick = 0
@@ -251,5 +228,9 @@ function love.draw()
 		love.graphics.draw(player.sprites)
 		love.graphics.print("Action: " .. tostring(player.state), player.x, player.y + 150)
 	end
-	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS()), 700, 0)
+	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS()), 650, 0)
+	
+	local stats = love.graphics.getStats()
+    love.graphics.print("Draw Calls: " .. stats.drawcalls, 650, 20)
+    love.graphics.print("Texture Memory: " .. tostring(math.floor(stats.texturememory/1024/1024)).." MB", 650, 40)
 end
