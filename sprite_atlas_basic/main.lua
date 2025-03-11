@@ -6,7 +6,7 @@ File atlas data has to be edited in last coloumn "Filename_GroupID_ImageNoID" =>
 
 Dhani Novan, 10:21 10 March 2025
 Jakarta
-]]--
+]] --
 local max_player = 2
 local players = {}
 local spriteBatch
@@ -35,6 +35,15 @@ reserved_action = {
 	[15] = function() return 5040 end
 }
 
+local gw, gh = love.graphics.getDimensions()
+local shader_mask = love.graphics.newCanvas()
+
+love.graphics.setCanvas(shader_mask)
+love.graphics.rectangle("fill", 0, 0, gw, gh)
+love.graphics.setCanvas()
+
+local shader = love.graphics.newShader("shader.frag")
+
 function trim(s)
 	return s:match("^%s*(.-)%s*$")
 end
@@ -52,13 +61,13 @@ end
 -- No cache (always call love.graphics.newImage): 800MB
 -- Cache (call loadAtlasImage): 220MB and faster loading time
 function loadAtlasImage(filename)
-	for k,v in ipairs(loaded_atlas_img) do
+	for k, v in ipairs(loaded_atlas_img) do
 		-- if found then use it
 		if v.filename == filename then
 			return v.image
 		end
 	end
-	
+
 	-- not found, then load it from disk
 	i = {}
 	i.filename = filename
@@ -223,14 +232,19 @@ function love.update(dt)
 end
 
 function love.draw()
+	shader:send("time", love.timer.getTime())
+	love.graphics.setShader(shader)
+	love.graphics.draw(shader_mask)
+	love.graphics.setShader()
+
 	-- Finally, draw the sprite batch to the screen.
 	for k, player in pairs(players) do
 		love.graphics.draw(player.sprites)
 		love.graphics.print("Action: " .. tostring(player.state), player.x, player.y + 150)
 	end
 	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS()), 650, 0)
-	
+
 	local stats = love.graphics.getStats()
-    love.graphics.print("Draw Calls: " .. stats.drawcalls, 650, 20)
-    love.graphics.print("Texture Memory: " .. tostring(math.floor(stats.texturememory/1024/1024)).." MB", 650, 40)
+	love.graphics.print("Draw Calls: " .. stats.drawcalls, 650, 20)
+	love.graphics.print("Texture Memory: " .. tostring(math.floor(stats.texturememory / 1024 / 1024)) .. " MB", 650, 40)
 end
