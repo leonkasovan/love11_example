@@ -171,20 +171,15 @@ end
 function love.load()
 	love.window.setVSync(1)
 
-	table.insert(players, loadChar("Zangief", 0, 20))
-	table.insert(players, loadChar("Zangief", 200, 20))
-	table.insert(players, loadChar("Zangief", 400, 20))
-	table.insert(players, loadChar("Zangief", 600, 20))
+	table.insert(players, loadChar("Zangief", 50, 120))
+	table.insert(players, loadChar("Zangief", 250, 120))
+	table.insert(players, loadChar("Zangief", 450, 120))
+	table.insert(players, loadChar("Zangief", 650, 120))
 
-	table.insert(players, loadChar("Wolverine", 0, 200))
-	table.insert(players, loadChar("Wolverine", 200, 200))
-	table.insert(players, loadChar("Wolverine", 400, 200))
-	table.insert(players, loadChar("Wolverine", 600, 200))
-
-	table.insert(players, loadChar("Sonic", 0, 400))
-	table.insert(players, loadChar("Sonic", 200, 400))
-	table.insert(players, loadChar("Sonic", 400, 400))
-	table.insert(players, loadChar("Sonic", 600, 400))
+	table.insert(players, loadChar("Wolverine", 50, 300))
+	table.insert(players, loadChar("Wolverine", 250, 300))
+	table.insert(players, loadChar("Wolverine", 450, 300))
+	table.insert(players, loadChar("Wolverine", 650, 300))
 end
 
 function love.update(dt)
@@ -242,9 +237,9 @@ function love.draw()
 		love.graphics.draw(player.sprites)
 		love.graphics.print("Action: " .. tostring(player.state), player.x, player.y + 150)
 	end
-	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS()), 650, 0)
+	love.graphics.print("Current FPS: " .. tostring(love.timer.getFPS()), 20, 0)
 
 	local stats = love.graphics.getStats()
-	love.graphics.print("Draw Calls: " .. stats.drawcalls, 650, 20)
-	love.graphics.print("Texture Memory: " .. tostring(math.floor(stats.texturememory / 1024 / 1024)) .. " MB", 650, 40)
+	love.graphics.print("Draw Calls: " .. stats.drawcalls, 20, 20)
+	love.graphics.print("Texture Memory: " .. tostring(math.floor(stats.texturememory / 1024 / 1024)) .. " MB", 20, 40)
 end
