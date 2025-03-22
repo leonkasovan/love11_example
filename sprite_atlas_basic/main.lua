@@ -36,13 +36,13 @@ reserved_action = {
 }
 
 local gw, gh = love.graphics.getDimensions()
-local shader_mask = love.graphics.newCanvas()
+-- local shader_mask = love.graphics.newCanvas()
 
-love.graphics.setCanvas(shader_mask)
-love.graphics.rectangle("fill", 0, 0, gw, gh)
-love.graphics.setCanvas()
+-- love.graphics.setCanvas(shader_mask)
+-- love.graphics.rectangle("fill", 0, 0, gw, gh)
+-- love.graphics.setCanvas()
 
-local shader = love.graphics.newShader("shader.frag")
+-- local shader = love.graphics.newShader("shader.frag")
 
 function trim(s)
 	return s:match("^%s*(.-)%s*$")
@@ -227,10 +227,10 @@ function love.update(dt)
 end
 
 function love.draw()
-	shader:send("time", love.timer.getTime())
-	love.graphics.setShader(shader)
-	love.graphics.draw(shader_mask)
-	love.graphics.setShader()
+	-- shader:send("time", love.timer.getTime())
+	-- love.graphics.setShader(shader)
+	-- love.graphics.draw(shader_mask)
+	-- love.graphics.setShader()
 
 	-- Finally, draw the sprite batch to the screen.
 	for k, player in pairs(players) do
