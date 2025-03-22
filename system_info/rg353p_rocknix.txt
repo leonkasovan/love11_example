@@ -1,7 +1,7 @@
 Supported features:
 clampzero	true
 fullnpot	true
-glsl3	false
+glsl3	true
 instancing	true
 lighten	true
 multicanvasformats	true
@@ -19,19 +19,19 @@ la8	false
 normal	true
 r16	false
 r16f	true
-r32f	true
+r32f	false
 r8	true
-rg11b10f	true
+rg11b10f	false
 rg16	false
 rg16f	true
-rg32f	true
+rg32f	false
 rg8	true
 rgb10a2	true
 rgb565	true
 rgb5a1	true
 rgba16	false
 rgba16f	true
-rgba32f	true
+rgba32f	false
 rgba4	true
 rgba8	true
 srgba8	true
@@ -52,16 +52,16 @@ ASTC6x6	true
 ASTC8x5	true
 ASTC8x6	true
 ASTC8x8	true
-BC4	true
-BC4s	true
-BC5	true
-BC5s	true
+BC4	false
+BC4s	false
+BC5	false
+BC5s	false
 BC6h	false
 BC6hs	false
 BC7	false
-DXT1	true
-DXT3	true
-DXT5	true
+DXT1	false
+DXT3	false
+DXT5	false
 EACr	true
 EACrg	true
 EACrgs	true
@@ -74,70 +74,48 @@ PVR1rgb2	false
 PVR1rgb4	false
 PVR1rgba2	false
 PVR1rgba4	false
-r16	true
+r16	false
 r16f	true
 r32f	true
 r8	true
-rg11b10f	true
-rg16	true
+rg11b10f	false
+rg16	false
 rg16f	true
 rg32f	true
 rg8	true
 rgb10a2	true
 rgb565	true
 rgb5a1	true
-rgba16	true
+rgba16	false
 rgba16f	true
 rgba32f	true
 rgba4	true
 rgba8	true
 
-Renderer:	OpenGL
-Vendor:	Broadcom
-Version:	3.1 Mesa 23.2.1-1~bpo12+rpt3
-Device:	V3D 7.1
+Renderer:	OpenGL ES
+Vendor:	ARM
+Version:	OpenGL ES 3.2 v1.g13p0-01eac0.98c5dad4e3309b873e3189000b74ea36
+Device:	Mali-G52
 
 Supported texture types:
+array	true
 cube	true
 2d	true
 volume	true
-array	true
 
 System limits:
 anisotropy	16
 canvasmsaa	4
-cubetexturesize	4096
-multicanvas	8
-pointsize	512
-texturelayers	2048
-texturesize	4096
-volumetexturesize	4096
+cubetexturesize	16383
+multicanvas	4
+pointsize	1024
+texturelayers	4096
+texturesize	16383
+volumetexturesize	16383
 
 Window dimensions:
 Width:	800
 Height:	600
 
 Supported fullscreen modes:
-1: 1920x1080
-2: 1680x1050
-3: 1440x1080
-4: 1400x1050
-5: 1600x900
-6: 1280x1024
-7: 1440x900
-8: 1280x960
-9: 1368x768
-10: 1280x800
-11: 1152x864
-12: 1280x720
-13: 1024x768
-14: 1024x576
-15: 800x600
-16: 864x486
-17: 720x480
-18: 640x480
-19: 720x400
-20: 640x400
-21: 640x350
-22: 320x240
-23: 320x200
+1: 640x480
