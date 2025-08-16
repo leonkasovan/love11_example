@@ -82,7 +82,7 @@ function loadChar(name, x, y)
 	-- player.atlas_img = love.graphics.newImage(player.name .. ".png")
 	player.atlas_img = loadAtlasImage(player.name .. ".png")
 	player.atlas_dat = {}
-	for line in io.lines(player.name .. ".tsv") do -- Iterate through each line of player.tsv (tab separated values)
+	for line in love.filesystem.lines(player.name .. ".tsv") do -- Iterate through each line of player.tsv (tab separated values)
 		if #line > 0 then
 			src_x, src_y, src_w, src_h, dst_x, dst_y, dst_w, dst_h, spr_group_id, spr_img_no = line:match(
 				"(%d+)\t(%d+)\t(%d+)\t(%d+)\t(%d+)\t(%d+)\t(%d+)\t(%d+)\t(%d+)%D(%d+)")
@@ -115,7 +115,7 @@ function loadChar(name, x, y)
 	local action_id = nil
 	local new_action_id = nil
 	player.anims = {}
-	for line in io.lines(player.name .. ".air") do
+	for line in love.filesystem.lines(player.name .. ".air") do
 		line = trim(line)
 		if #line == 0 then goto skip end           -- check if empty line
 		if string.byte(line, 1) == 59 then goto skip end -- check if commented using ';' = byte 59
